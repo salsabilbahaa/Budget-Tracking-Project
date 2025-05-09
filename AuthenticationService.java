@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class AuthenticationService {
 
     public static boolean validateInputs(String email, String username, String password, String phoneNumber) {
@@ -21,16 +22,19 @@ public class AuthenticationService {
         System.out.println("User signed up successfully.");
         return true;
     }
+
     public static boolean verify(String email, String password) {
-        User user = Database.getUsers(email);
-        if(user==null){
-           System.out.println("Email not found.");
-        }
-        else if(user.getpassword().equla(password)){
+        User user = Database.(email);  
+        
+        if (user == null) {
+            System.out.println("Email not found.");
+            return false;
+        } 
+        else if (user.getPassword().equals(password)) {
             System.out.println("Login successful!");
             return true;
-        }
-        else{
+        } 
+        else {
             System.out.println("Password is invalid.");
             return false;
         }
