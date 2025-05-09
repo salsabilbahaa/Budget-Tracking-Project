@@ -24,7 +24,7 @@ public class AuthenticationService {
     }
 
     public static boolean verify(String email, String password) {
-        User user = Database.(email);  
+        User user = Database. getUserByEmail(email);  
         
         if (user == null) {
             System.out.println("Email not found.");
