@@ -23,6 +23,14 @@ public class Database {
         users.add(user);
         saveUsers();
     }
+    public static User getUserByEmail(String email) {
+    for (User user : users) {
+        if (user.getEmail().equalsIgnoreCase(email)) {
+            return user;
+        }
+    }
+    return null;
+}
 
     public static void saveUsers(){
         try (Writer writer = new FileWriter(fileName)){
