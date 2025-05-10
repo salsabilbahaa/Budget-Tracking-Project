@@ -23,7 +23,7 @@ public class AuthenticationService {
         return true;
     }
 
-    public static boolean verify(String email, String password) {
+    public static boolean verifyCredentials(String email, String password) {
         User user = Database. getUserByEmail(email);  
         
         if (user == null) {
