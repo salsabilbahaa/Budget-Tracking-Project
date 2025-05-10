@@ -16,7 +16,7 @@ public class LoginPage {
             password = scanner.nextLine();
 
 
-            if (!AuthenticationService.verify(email, password)) {
+            if (!AuthenticationService.verifyCredentials(email, password)) {
                 System.out.println("Login failed.");
             }
             else{
