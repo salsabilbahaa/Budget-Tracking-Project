@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class SignUpPage {
-    public static void run() {
+    public static User run() {
         Scanner scanner = new Scanner(System.in);
 
         String email, username, password, phone;
@@ -33,13 +33,20 @@ public class SignUpPage {
             System.out.print("Enter the OTP sent to your phone: ");
             int otp = scanner.nextInt();
 
-            if (!AuthenticationService.signUp(email, username, password, phone, otp)) {
+            if (!OTPService.verifyOTP(otp)) {
                 System.out.println("Invalid OTP. Please try again.");
             } else {
                 break;
             }
         }
-        System.out.println("Redirecting to dashboard...");
+        if (!AuthenticationService.signUp(email, username, password, phone)) {
+            System.out.println("Sign up failed.");
+            return null;
+        }
+        else {
+            System.out.println("Redirecting to dashboard...");
+            return Database.getUserByEmail(email);
+        }
 
     }
 }

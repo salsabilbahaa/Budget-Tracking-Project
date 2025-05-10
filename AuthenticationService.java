@@ -6,14 +6,10 @@ public class AuthenticationService {
         return email.contains("@") && password.matches(".*\\d.*") && password.length() >= 8 && phoneNumber.length() >= 10;
     }
 
-    public static boolean signUp(String email, String username, String password, String phoneNumber, int otp) {
-        if (Database.emailExists(email)) {
-            System.out.println("Email already exists.");
-            return false;
-        }
-
-        if (!OTPService.verifyOTP(otp)) {
-            System.out.println("Invalid OTP.");
+    public static boolean signUp(String email, String username, String password, String phoneNumber) {
+        User check = Database.getUserByEmail(email);
+        if (check != null) {
+            System.out.println("Email already exists");
             return false;
         }
 
@@ -24,7 +20,7 @@ public class AuthenticationService {
     }
 
     public static boolean verifyCredentials(String email, String password) {
-        User user = Database. getUserByEmail(email);
+        User user = Database.getUserByEmail(email);
 
         if (user == null) {
             System.out.println("Email not found.");

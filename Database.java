@@ -14,10 +14,6 @@ public class Database {
             .create();
     private static List<User> users = loadUsers();
 
-    public static boolean emailExists(String email) {
-        return users.stream().anyMatch(u -> u.getEmail().equalsIgnoreCase(email));
-    }
-
     public static List<User> getUsers() {
         return users;
     }
@@ -84,4 +80,15 @@ public class Database {
         }
         return allBudgets;
     }
+
+    public static void updateUser(User updatedUser) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equals(updatedUser.getEmail())) {
+                users.set(i, updatedUser);
+                break;
+            }
+        }
+        saveUsers();
+    }
+
 }

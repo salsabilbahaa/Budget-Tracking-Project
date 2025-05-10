@@ -1,31 +1,24 @@
 import java.util.Scanner;
 
 public class LoginPage {
-    public static void run() {
+    public static User run() {
         Scanner scanner = new Scanner(System.in);
 
         String email, password;
 
+        System.out.print("Email: ");
+        email = scanner.nextLine();
 
-            System.out.print("Email: ");
-            email = scanner.nextLine();
+        System.out.print("Password: ");
+        password = scanner.nextLine();
 
-
-
-            System.out.print("Password: ");
-            password = scanner.nextLine();
-
-
-            if (!AuthenticationService.verifyCredentials(email, password)) {
-                System.out.println("Login failed.");
-            }
-            else{
-                System.out.println("Redirecting to dashboard...");
-            }
-
-
-
-
-
+        if (!AuthenticationService.verifyCredentials(email, password)) {
+            System.out.println("Login failed.");
+            return null;
+        }
+        else{
+            System.out.println("Redirecting to dashboard...");
+            return Database.getUserByEmail(email);
+        }
     }
 }
