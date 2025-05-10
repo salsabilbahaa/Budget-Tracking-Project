@@ -56,4 +56,32 @@ public class Database {
             return new ArrayList<>();
         }
     }
+    public void addBudget(String email, BudgetingPage budget) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            user.addBudget(budget);
+            saveUsers();
+            budget.notifyObservers(); 
+        } else {
+            System.out.println("User not found: " + email);
+        }
+    }
+
+   
+    public List<BudgetingPage> retrieveBudget(String email) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            return user.getBudgets();
+        }
+        return new ArrayList<>();
+    }
+
+    // New method to retrieve all budgets (for analysis)
+    public List<BudgetingPage> getAllBudgets() {
+        List<BudgetingPage> allBudgets = new ArrayList<>();
+        for (User user : users) {
+            allBudgets.addAll(user.getBudgets());
+        }
+        return allBudgets;
+    }
 }
