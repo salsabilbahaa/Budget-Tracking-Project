@@ -68,19 +68,18 @@ public class Database {
     }
 
    
-    public List<BudgetingPage> retrieveBudget(String email) {
+    public List<BudgetingPage>retrieveBudgets(String email) {
         User user = getUserByEmail(email);
         if (user != null) {
-            return user.getBudgets();
+            return user.retrieveBudgets();
         }
         return new ArrayList<>();
     }
 
-    // New method to retrieve all budgets (for analysis)
     public List<BudgetingPage> getAllBudgets() {
         List<BudgetingPage> allBudgets = new ArrayList<>();
         for (User user : users) {
-            allBudgets.addAll(user.getBudgets());
+            allBudgets.addAll(user.retrieveBudgets()());
         }
         return allBudgets;
     }
