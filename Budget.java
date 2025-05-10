@@ -1,7 +1,7 @@
 import java.util.*;
 public class Budget {
-double amount;
-String catogry;
+private double amount; 
+    private String category;
 public Budget(double amount, String category) {
     this.amount = amount;
     this.catogry = category;
