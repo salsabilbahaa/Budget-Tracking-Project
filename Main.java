@@ -24,7 +24,7 @@ public class Main {
                      LoginPage.run();
                     break;
                 case 3:
-                    BudgetMain.run();
+                    BudgetingPage.run();
                     break;
                 case 4:
                     System.out.println("Exiting...");
