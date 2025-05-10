@@ -7,6 +7,31 @@ public Budget(double amount, String category) {
     this.catogry = category;
 }
 
+ List<BudgetObserver>observers=new ArrayList<>();
+ public void addObserver(BudgetObserver observer) {
+     observers.add(observer);
+ }
+ public void removeObserver(BudgetObserver observer) {
+     observers.remove(observer);
+ }
+ public void notifyObservers() {
+     for (BudgetObserver observer : observers) {
+         observer.update(this);
+
+     }
+ }
+    public double getAmount() {
+        return amount;
+    }
+ public String getCategory() {
+     return catogry;
+ }
+}
+class DashBoard implements BudgetObserver {
+@Override
+public void update(Budget budget) {
+    System.out.println("Dashboard updated: New budget added - Category: " + budget.getCategory() + ", Amount: " + budget.getAmount());
+}
 }
  class ValidateBudget{
     private static final  int IncomeLimit=20000;
@@ -25,6 +50,7 @@ class Database{
     private List<Budget>  budgets= new ArrayList<>();
     public  void addBudget(Budget budget){
         budgets.add(budget);
+        budget.notifyObservers();
     }
     public void retriveBudgets(){
         for(Budget budget:budgets){
@@ -44,6 +70,7 @@ class CreateBudget{
     Budget budget;
     ValidateBudget validate_budget=new ValidateBudget();
     Database database=new Database();
+    DashBoard dashboard=new DashBoard();
     public Database getDatabase() {
         return database;
     }
@@ -52,8 +79,10 @@ class CreateBudget{
 
        if(validate_budget.validate(amount,Category)){
            budget = new Budget(amount,Category);
+           budget.addObserver(dashboard);
            database.addBudget(budget);
            System.out.println("Successfully created budget");
+
 
        }
        else{
