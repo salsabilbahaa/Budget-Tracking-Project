@@ -12,7 +12,7 @@ public class User {
     @Expose
     private String phoneNumber;
     @Expose
-    private List<BudgetingPage> budgets;
+    private List<BudgetingPage> budgets=new ArrayList<>();
     @Expose
     private List<Income> incomes = new ArrayList<>();
 
@@ -29,6 +29,7 @@ public class User {
     public String getPassword() { return password; }
     public String getPhoneNumber() { return phoneNumber; }
 
+ 
     public List<BudgetingPage> retrieveBudgets() {
         if (budgets == null) {
             budgets = new ArrayList<>();
@@ -41,9 +42,8 @@ public class User {
     }
 
     public void addBudget(BudgetingPage budget) {
-        retrieveBudgets().add(budget);
+        budgets.add(budget);
     }
-
 
     public void addIncome(Income income) {
         if (incomes == null) {
