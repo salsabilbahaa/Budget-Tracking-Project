@@ -1,19 +1,17 @@
 import java.util.Set;
 
-class ValidationService {
+ class ValidationService {
 
-    private static final  int IncomeLimit=20000;
-    private static final Set<String> Categories = Set.of(
-            "Food", "Rent", "Utilities", "Transport",
-            "Healthcare", "Education", "Entertainment", "Savings"
-    );
+        private static final  int IncomeLimit=20000;
+        private static final Set<String> Categories = Set.of(
+                "Food", "Rent", "Utilities", "Transport",
+                "Healthcare", "Education", "Entertainment", "Savings"
+        );
+        public boolean validateBudget(double amount,String category){
 
-    public boolean validateBudget(double amount,String category){
-        return   (amount<=IncomeLimit && amount>=0 && Categories.contains (category));
+            return   (amount<=IncomeLimit && amount>=0 && Categories.contains (category));
+
+
+        }
     }
-
-     public static boolean validateIncomeData(double amount) {
-         return amount > 0;
-     }
-}
 
