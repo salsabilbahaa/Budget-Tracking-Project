@@ -7,8 +7,8 @@ public class AnalysisEngine {
         this.database = database;
     }
 
-    public void generateSpendingAnalysis(String userEmail) {
-        List<BudgetingPage> budgets = database.retrieveBudgets(userEmail);
+    public void generateSpendingAnalysis(User user) {
+        List<BudgetingPage> budgets = database.retrieveBudgets(user);
         double totalSpending = 0;
         for (BudgetingPage budgetingPage : budgets) {
             Budget budget = budgetingPage.getBudget();

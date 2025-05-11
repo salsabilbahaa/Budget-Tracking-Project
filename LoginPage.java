@@ -6,19 +6,28 @@ public class LoginPage {
 
         String email, password;
 
-        System.out.print("Email: ");
-        email = scanner.nextLine();
 
-        System.out.print("Password: ");
-        password = scanner.nextLine();
+            System.out.print("Email: ");
+            email = scanner.nextLine();
 
-        if (!AuthenticationService.verifyCredentials(email, password)) {
-            System.out.println("Login failed.");
-            return null;
-        }
-        else{
-            System.out.println("Redirecting to dashboard...");
-            return Database.getUserByEmail(email);
-        }
+
+
+            System.out.print("Password: ");
+            password = scanner.nextLine();
+
+
+            if (!AuthenticationService.verifyCredentials(email, password)) {
+                System.out.println("Login failed.");
+                return null;
+            }
+            else{
+                System.out.println("Redirecting to dashboard...");
+                return (Database.getUserByEmail(email));
+            }
+
+
+
+
+
     }
 }

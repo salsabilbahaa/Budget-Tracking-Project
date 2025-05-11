@@ -1,6 +1,9 @@
+import com.google.gson.annotations.Expose;
+
 import java.util.Scanner;
 
 public class BudgetingPage {
+    @Expose
     private Budget budget;
     static BudgetService budgetService = new BudgetService();
     static AnalysisEngine analysis = new AnalysisEngine(budgetService.getDatabase());
@@ -13,17 +16,10 @@ public class BudgetingPage {
         return budget;
     }
 
-    public static void run() {
+    public static void run(User user) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter your email: ");
-        String userEmail = scanner.nextLine();
 
-
-        if (Database.getUserByEmail(userEmail) == null) {
-            System.out.println("User not found: " + userEmail + ". Please sign up or log in first.");
-            return;
-        }
 
         System.out.print("Enter budget category (e.g., Transport): ");
         String category = scanner.nextLine();
@@ -33,7 +29,8 @@ public class BudgetingPage {
 
         Budget budget = new Budget(amount, category);
         BudgetingPage budgetingPage = new BudgetingPage(budget);
-        budgetService.createBudget(amount, category, userEmail);
-        analysis.generateSpendingAnalysis(userEmail);
+        if(budgetService.createBudget(amount, category, user)) {
+            analysis.generateSpendingAnalysis(user);//validate
+        }
     }
 }
