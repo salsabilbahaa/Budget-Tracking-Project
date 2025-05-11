@@ -8,14 +8,7 @@ public class ExpenseTrackingPage
 {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) 
-    {
-        System.out.println();
-        System.out.println("------ Expense Tracking System ------");
-        handleExpenseTrackingPage();
-    }
-
-    private static void handleExpenseTrackingPage() 
+    public static void handleExpenseTrackingPage()
     {
         while (true) 
         {

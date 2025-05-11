@@ -5,14 +5,7 @@ public class DonationPage
 {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) 
-    {
-        System.out.println();
-        System.out.println("------ Donation System ------");
-        handleDonationPage();
-    }
-
-    private static void handleDonationPage() 
+    public static void handleDonationPage()
     {
         while (true) 
         {

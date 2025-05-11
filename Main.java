@@ -11,7 +11,12 @@ public class Main {
             System.out.println("2. Log in");
             System.out.println("3. Create budget & analysis");
             System.out.println("4. Income Tracking Page");
-            System.out.println("5. Exit");
+            System.out.println("5. Reminders Page");
+            System.out.println("6. Saving and Goals Page");
+            System.out.println("7. Expense Tracking Page");
+            System.out.println("8. Debt Repayment Page");
+            System.out.println("9. Donation Page");
+            System.out.println("10. Exit");
             System.out.println("____________________________");
             System.out.print("Enter your choice: ");
 
@@ -44,6 +49,16 @@ public class Main {
                     }
                     break;
                 case 5:
+                    ReminderPage.handleReminderPage();
+                case 6:
+                    SavingsGoalsPage.handleSavingsPage();
+                case 7:
+                    ExpenseTrackingPage.handleExpenseTrackingPage();
+                case 8:
+                    DebtRepaymentPage.handleDebtRepaymentPage();
+                case 9:
+                    DonationPage.handleDonationPage();
+                case 10:
                     System.out.println("Exiting...");
                     scanner.close();
                     return;

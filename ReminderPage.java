@@ -8,14 +8,7 @@ public class ReminderPage
 {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) 
-    {
-        System.out.println();
-        System.out.println("------ Reminder System ------");
-        handleReminderPage();
-    }
-
-    private static void handleReminderPage() 
+    public static void handleReminderPage()
     {
         while (true) 
         {

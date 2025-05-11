@@ -8,15 +8,7 @@ public class DebtRepaymentPage
 {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) 
-    {
-        System.out.println();
-        System.out.println("------ Debt Repayment System ------");
-
-        handleDebtRepaymentPage();
-    }
-
-    private static void handleDebtRepaymentPage() 
+    public static void handleDebtRepaymentPage()
     {
         while (true) 
         {

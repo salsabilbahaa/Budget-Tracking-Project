@@ -5,14 +5,7 @@ public class SavingsGoalsPage
 {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) 
-    {
-        System.out.println();
-        System.out.println("------ Savings & Goals System ------");
-        handleSavingsPage();
-    }
-
-    private static void handleSavingsPage() 
+    public static void handleSavingsPage()
     {
         while (true) 
         {
