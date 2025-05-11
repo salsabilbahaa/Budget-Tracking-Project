@@ -54,25 +54,25 @@ public class Database {
         }
     }
 
-    public void addBudget(String email, BudgetingPage budget) {
-        User user = getUserByEmail(email);
-        if (user != null) {
-            user.addBudget(budget);
-            saveUsers();
-            budget.getBudget().notifyObservers();
-        } else {
-            System.out.println("User not found: " + email);
+    public void addBudget(User x, BudgetingPage budget) {
+        for (User user : users) {
+            if (user.getEmail().equalsIgnoreCase(x.getEmail())) {
+                user.addBudget(budget);
+                saveUsers();
+                budget.getBudget().notifyObservers();
+                return;
+            }
         }
+        System.out.println("User not found");
     }
-
-    public List<BudgetingPage> retrieveBudgets(String email) {
-        User user = getUserByEmail(email);
-        if (user != null) {
-            return user.retrieveBudgets();
+     public List<BudgetingPage> retrieveBudgets(User x) {
+        for (User user : users) {
+            if (user.getEmail().equalsIgnoreCase(x.getEmail())) {
+                return user.retrieveBudgets();
+            }
         }
         return new ArrayList<>();
     }
-
     public List<BudgetingPage> getAllBudgets() {
         List<BudgetingPage> allBudgets = new ArrayList<>();
         for (User user : users) {
