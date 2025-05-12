@@ -1,8 +1,20 @@
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Manages the process of adding income records for a user through a command-line interface.
+ * Collects income details such as source, amount, and recurrence, validates the data,
+ * and stores the income in the user's record via the database.
+ */
 public class IncomeTrackingPage {
 
+    /**
+     * Prompts the user to input income details, including source, amount, and recurrence status.
+     * Validates the income amount, creates an Income object, adds it to the user's income list,
+     * and updates the database. Displays success or error messages based on the input validation.
+     *
+     * @param user The User object to which the income record will be added.
+     */
     public static void run(User user) {
         Scanner scanner = new Scanner(System.in);
 

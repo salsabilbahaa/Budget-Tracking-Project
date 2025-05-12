@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 /**
+ * Author :Ola Ghoneim , Salsabil Bahaa Eldin ,Mariem Refaey
  * Serves as the entry point for the Budget Tracking Application, providing a menu-driven 
  * interface for users to sign up, log in, manage budgets, track finances, and access various 
  * features. Maintains the current user session and directs to appropriate pages based on 
