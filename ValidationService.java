@@ -12,7 +12,7 @@ class ValidationService {
         return   (amount<=IncomeLimit && amount>=0 && Categories.contains (category));
     }
 
-     public static boolean validateIncomeData(double amount) {
-         return amount > 0;
-     }
+    public static boolean validateIncomeData(double amount) {
+        return amount > 0;
+    }
 }

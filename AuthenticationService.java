@@ -1,36 +1,46 @@
-import java.util.*;
-
 public class AuthenticationService {
+    // Create a private static instance of the class
+    private static AuthenticationService instance = null;
 
-    public static boolean validateInputs(String email, String username, String password, String phoneNumber) {
+    private AuthenticationService() {
+    }
+
+    public static AuthenticationService getInstance() {
+        if (instance == null) {
+            instance = new AuthenticationService();
+        }
+        return instance;
+    }
+
+    public boolean validateInputs(String email, String username, String password, String phoneNumber) {
         return email.contains("@") && password.matches(".*\\d.*") && password.length() >= 8 && phoneNumber.length() >= 10;
     }
 
-    public static boolean signUp(String email, String username, String password, String phoneNumber) {
-        User check = Database.getUserByEmail(email);
+    public boolean signUp(String email, String username, String password, String phoneNumber) {
+        Database database = Database.getInstance();
+        User check = database.getUserByEmail(email);
         if (check != null) {
             System.out.println("Email already exists");
             return false;
         }
 
         User user = new User(email, username, password, phoneNumber);
-        Database.addUser(user);
+        database.addUser(user);
         System.out.println("User signed up successfully.");
         return true;
     }
 
-    public static boolean verifyCredentials(String email, String password) {
-        User user = Database.getUserByEmail(email);
+    public boolean verifyCredentials(String email, String password) {
+        Database database = Database.getInstance();
+        User user = database.getUserByEmail(email);
 
         if (user == null) {
             System.out.println("Email not found.");
             return false;
-        }
-        else if (user.getPassword().equals(password)) {
+        } else if (user.getPassword().equals(password)) {
             System.out.println("Login successful!");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Password is invalid.");
             return false;
         }

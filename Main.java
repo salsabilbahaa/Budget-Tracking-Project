@@ -55,14 +55,19 @@ public class Main {
                     break;
                 case 5:
                     ReminderPage.handleReminderPage();
+                    break;
                 case 6:
                     SavingsGoalsPage.handleSavingsPage();
+                    break;
                 case 7:
                     ExpenseTrackingPage.handleExpenseTrackingPage();
+                    break;
                 case 8:
                     DebtRepaymentPage.handleDebtRepaymentPage();
+                    break;
                 case 9:
                     DonationPage.handleDonationPage();
+                    break;
                 case 10:
                     System.out.println("Exiting...");
                     scanner.close();

@@ -7,23 +7,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
+    private static Database instance = null;
     private static final String fileName = "users.json";
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .excludeFieldsWithoutExposeAnnotation()
             .create();
-    private static List<User> users = loadUsers();
+    private List<User> users;
 
-    public static List<User> getUsers() {
+    // Private constructor to initialize the users list
+    private Database() {
+        users = loadUsers();
+    }
+
+    // Public method to get the single instance
+    public static Database getInstance() {
+        if (instance == null) {
+            instance = new Database();
+        }
+        return instance;
+    }
+
+    public List<User> getUsers() {
         return users;
     }
 
-    public static void addUser(User user) {
+    public void addUser(User user) {
         users.add(user);
         saveUsers();
     }
 
-    public static User getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         for (User user : users) {
             if (user.getEmail().equalsIgnoreCase(email)) {
                 return user;
@@ -32,7 +46,7 @@ public class Database {
         return null;
     }
 
-    public static void saveUsers() {
+    public void saveUsers() {
         try (Writer writer = new FileWriter(fileName)) {
             gson.toJson(users, writer);
         } catch (IOException e) {
@@ -40,7 +54,7 @@ public class Database {
         }
     }
 
-    private static List<User> loadUsers() {
+    private List<User> loadUsers() {
         File file = new File(fileName);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -65,7 +79,8 @@ public class Database {
         }
         System.out.println("User not found");
     }
-     public List<BudgetingPage> retrieveBudgets(User x) {
+
+    public List<BudgetingPage> retrieveBudgets(User x) {
         for (User user : users) {
             if (user.getEmail().equalsIgnoreCase(x.getEmail())) {
                 return user.retrieveBudgets();
@@ -73,6 +88,7 @@ public class Database {
         }
         return new ArrayList<>();
     }
+
     public List<BudgetingPage> getAllBudgets() {
         List<BudgetingPage> allBudgets = new ArrayList<>();
         for (User user : users) {
@@ -81,7 +97,7 @@ public class Database {
         return allBudgets;
     }
 
-    public static void updateUser(User updatedUser) {
+    public void updateUser(User updatedUser) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getEmail().equals(updatedUser.getEmail())) {
                 users.set(i, updatedUser);
@@ -90,5 +106,4 @@ public class Database {
         }
         saveUsers();
     }
-
 }

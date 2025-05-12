@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BudgetService {
     private ValidationService validateBudget = new ValidationService();
-    private Database database = new Database();
+    private Database database = Database.getInstance();
     private DashBoard dashboard = new DashBoard();
 
 

@@ -5,6 +5,7 @@ public class SignUpPage {
         Scanner scanner = new Scanner(System.in);
 
         String email, username, password, phone;
+        AuthenticationService authService = AuthenticationService.getInstance();
 
         while (true) {
             System.out.print("Email: ");
@@ -19,7 +20,7 @@ public class SignUpPage {
             System.out.print("Phone: ");
             phone = scanner.nextLine();
 
-            if (!AuthenticationService.validateInputs(email, username, password, phone)) {
+            if (!authService.validateInputs(email, username, password, phone)) {
                 System.out.println("Invalid input. Follow these rules:\nThe email should contain @ \nthe password should contain letters and numbers\n" +
                         "The password should be at least 8 characters long\nThe phone number should be at least 10 characters long.");
             }
@@ -39,13 +40,14 @@ public class SignUpPage {
                 break;
             }
         }
-        if (!AuthenticationService.signUp(email, username, password, phone)) {
+        if (!authService.signUp(email, username, password, phone)) {
             System.out.println("Sign up failed.");
             return null;
         }
         else {
             System.out.println("Redirecting to dashboard...");
-            return Database.getUserByEmail(email);
+            Database database = Database.getInstance();
+            return database.getUserByEmail(email);
         }
 
     }

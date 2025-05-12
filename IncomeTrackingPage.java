@@ -16,6 +16,7 @@ public class IncomeTrackingPage {
         System.out.print("Is this income Recurring: ");
         String isRecurring = scanner.nextLine();
 
+        Database database = Database.getInstance();
         while (!ValidationService.validateIncomeData(amount)){
             System.out.println("Invalid income amount. Please enter amount > 0.");
             System.out.print("Enter income amount: ");
@@ -24,7 +25,7 @@ public class IncomeTrackingPage {
 
         Income income = new Income(source, amount, new Date(), isRecurring);
         user.addIncome(income);
-        Database.updateUser(user);
+        database.updateUser(user);
         System.out.println("Income added successfully.");
     }
 }
