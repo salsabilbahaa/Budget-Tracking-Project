@@ -5,14 +5,16 @@ class ValidationService {
     private static final  int IncomeLimit=20000;
     private static final Set<String> Categories = Set.of(
             "Food", "Rent", "Utilities", "Transport",
-            "Healthcare", "Education", "Entertainment", "Savings"
+            "Healthcare", "Education", "Entertainment", "Savings","food", "rent", "utilities", "transport",
+            "healthcare", "education", "entertainment", "savings"
     );
 
     public boolean validateBudget(double amount,String category){
         return   (amount<=IncomeLimit && amount>=0 && Categories.contains (category));
     }
 
-    public static boolean validateIncomeData(double amount) {
-        return amount > 0;
-    }
+     public static boolean validateIncomeData(double amount) {
+         return amount > 0;
+     }
 }
+
