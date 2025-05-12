@@ -4,14 +4,20 @@ import java.util.Scanner;
 /**
  * Manages the process of adding income records for a user through a command-line interface.
  * Collects income details such as source, amount, and recurrence, validates the data,
- * and stores the income in the user's record via the database.
+ * and stores the income in the user's record via the database. Notifies registered observers
+ * of new income records.
  */
 public class IncomeTrackingPage {
+    /**
+     * Shared dashboard instance for observing income updates.
+     */
+    private static DashBoard dashboard = new DashBoard();
 
     /**
      * Prompts the user to input income details, including source, amount, and recurrence status.
      * Validates the income amount, creates an Income object, adds it to the user's income list,
-     * and updates the database. Displays success or error messages based on the input validation.
+     * registers the dashboard as an observer, and updates the database. Displays success or
+     * error messages based on the input validation.
      *
      * @param user The User object to which the income record will be added.
      */
@@ -33,9 +39,11 @@ public class IncomeTrackingPage {
             System.out.println("Invalid income amount. Please enter amount > 0.");
             System.out.print("Enter income amount: ");
             amount = scanner.nextDouble();
+            scanner.nextLine();
         }
 
         Income income = new Income(source, amount, new Date(), isRecurring);
+        income.addObserver(dashboard);
         user.addIncome(income);
         database.updateUser(user);
         System.out.println("Income added successfully.");

@@ -15,7 +15,7 @@ public class Budget {
     @Expose
     private String category;
     /** List of observers to be notified of budget updates. */
-    private List<BudgetObserver> observers = new ArrayList<>();
+    private List<FinancialObserver> observers = new ArrayList<>();
 
     /**
      * Initializes a new budget with a specified amount and category.
@@ -33,7 +33,7 @@ public class Budget {
      * 
      * @param observer The observer to add to the notification list.
      */
-    public void addObserver(BudgetObserver observer) {
+    public void addObserver(FinancialObserver observer) {
         // Append the observer to the list
         observers.add(observer);
     }
@@ -43,7 +43,7 @@ public class Budget {
      * 
      * @param observer The observer to remove from the notification list.
      */
-    public void removeObserver(BudgetObserver observer) {
+    public void removeObserver(FinancialObserver observer) {
         // Remove the specified observer
         observers.remove(observer);
     }
@@ -54,7 +54,7 @@ public class Budget {
      */
     public void notifyObservers() {
         // Loop through observers and call their update method
-        for (BudgetObserver observer : observers) {
+        for (FinancialObserver observer : observers) {
             observer.update(this);
         }
     }
